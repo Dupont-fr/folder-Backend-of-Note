@@ -1,8 +1,8 @@
 const express = require('express')
-const cors = require('cors')
+
 const app = express()
 const { StatusCodes } = require('http-status-codes')
-
+const baseUrl = '/api/notes'
 let notes = [
   {
     id: 1,
@@ -23,8 +23,9 @@ let notes = [
     important: true,
   },
 ]
-app.use(cors())
+
 app.use(express.json())
+app.use(express.static('dist'))
 
 const generateId = () => {
   const maxId = notes.length > 0 ? Math.max(...notes.map((n) => n.id)) : 0
