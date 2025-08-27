@@ -16,7 +16,8 @@
     "corps": "^0.1.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "http-status-codes": "^2.3.0"
+    "http-status-codes": "^2.3.0",
+    "mongoose": "^8.18.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

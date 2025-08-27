@@ -1,7 +1,9 @@
 const express = require('express')
-
+const mongoose = require('mongoose')
 const app = express()
 const { StatusCodes } = require('http-status-codes')
+const Note = require('./models/note')
+require('dotenv').config()
 const baseUrl = '/api/notes'
 let notes = [
   {
@@ -26,6 +28,27 @@ let notes = [
 
 app.use(express.json())
 app.use(express.static('dist'))
+
+// // NE SAUVEGARDEZ PAS VOTRE MOT DE PASSE SUR GITHUB !!
+// const password = process.argv[2]
+// const url = `mongodb+srv://dupontdjeague:${password}@cluster0.t2xncq8.mongodb.net/Notes?retryWrites=true&w=majority&appName=Cluster0`
+
+// mongoose.set(`strictQuery`, false)
+// mongoose.connect(url)
+
+// const noteSchema = new mongoose.Schema({
+//   content: String,
+//   important: Boolean,
+// })
+// noteSchema.set('toJSON', {
+//   transform: (document, returnedObject) => {
+//     returnedObject.id = returnedObject._id.toString()
+//     delete returnedObject._id
+//     delete returnedObject.__v
+//   },
+// })
+
+// const Note = mongoose.model('Note', noteSchema)
 
 const generateId = () => {
   const maxId = notes.length > 0 ? Math.max(...notes.map((n) => n.id)) : 0
@@ -58,7 +81,9 @@ app.get('/', (request, response) => {
 })
 
 app.get('/api/notes', (request, response) => {
-  response.json(notes)
+  Note.find({}).then((notes) => {
+    response.json(notes)
+  })
 })
 
 app.get('/api/notes/:id', (request, response) => {
