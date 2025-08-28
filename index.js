@@ -8,9 +8,11 @@ app.use(express.json())
 app.use(express.static('dist'))
 
 // 🔹 Connexion MongoDB via Render (avec variable d’environnement MONGODB_URI)
+const url = process.env.MONGODB_URI
+
 mongoose.set('strictQuery', false)
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(url)
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch((error) => console.error('❌ MongoDB connection error:', error))
 
