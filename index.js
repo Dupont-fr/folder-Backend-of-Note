@@ -7,17 +7,17 @@ const app = express()
 app.use(express.json())
 app.use(express.static('dist'))
 
-// 🔹 Connexion MongoDB via Render (avec variable d’environnement MONGODB_URI)
-const url = process.env.MONGODB_URI
+// 🔹 Connexion MONGO via Render (avec variable d’environnement MONGO_URI)
+const url = process.env.MONGO_URI
 if (!url) {
-  console.error('MongoDB URI is not defined!')
+  console.error('MONGO URI is not defined!')
   process.exit(1)
 }
 mongoose.set('strictQuery', false)
 mongoose
   .connect(url)
-  .then(() => console.log('✅ Connected to MongoDB'))
-  .catch((error) => console.error('❌ MongoDB connection error:', error))
+  .then(() => console.log('✅ Connected to MONGO'))
+  .catch((error) => console.error('❌ MONGO connection error:', error))
 
 // 🔹 Définition du modèle Note
 const noteSchema = new mongoose.Schema({
