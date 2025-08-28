@@ -9,7 +9,10 @@ app.use(express.static('dist'))
 
 // 🔹 Connexion MongoDB via Render (avec variable d’environnement MONGODB_URI)
 const url = process.env.MONGODB_URI
-
+if (!url) {
+  console.error('MongoDB URI is not defined!')
+  process.exit(1)
+}
 mongoose.set('strictQuery', false)
 mongoose
   .connect(url)
