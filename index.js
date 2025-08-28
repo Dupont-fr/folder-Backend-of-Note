@@ -69,6 +69,11 @@ app.delete('/api/notes/:id', (req, res, next) => {
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`))
+if (!process.env.MONGODB_URI) {
+  console.error('MONGODB_URI is not defined! Check Render Environment settings')
+  process.exit(1)
+}
+console.log('MongoDB URI:', process.env.MONGODB_URI)
 
 app.use((error, req, res, next) => {
   if (error.name === 'CastError') {
