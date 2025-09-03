@@ -7,7 +7,7 @@ if (process.argv.length < 3) {
 
 const password = process.argv[2]
 
-const url = `mongodb+srv://dupontdjeague:${password}@cluster0.t2xncq8.mongodb.net/Notes?retryWrites=true&w=majority&appName=Cluster0`
+const url = `mongodb+srv://dupontdjeague:${password}@cluster0.t2xncq8.mongodb.net/NotesTest?retryWrites=true&w=majority&appName=Cluster0`
 
 mongoose.set(`strictQuery`, false)
 
@@ -19,7 +19,7 @@ const noteSchema = new mongoose.Schema({
 })
 const Note = mongoose.model(`Note`, noteSchema)
 
-const notes = [
+/*const notes = [
   { content: 'Browser can execute only JavaScript', important: false },
   { content: 'HTML is essy', important: true },
   {
@@ -27,7 +27,7 @@ const notes = [
     important: false,
   },
   { content: 'like react programming', important: true },
-]
+]*/
 
 // Note.insertMany(notes).then((result) => {
 //   console.log(`note saved!`)
