@@ -1,1 +1,5 @@
 GET http://localhost:3001/api/notes/68b0848c4a8e66884474dd8e
+
+
+###
+GET http://localhost:3001/api/users/68bab262ba921c6d59ec5605
